@@ -1,0 +1,51 @@
+    	html {
+    		background: black;
+    	}
+
+    	body {
+    		background: linear-gradient(#112226, #202030, black);
+    		background-repeat: no-repeat;
+    		font-family: 'Press Start 2P', cursive;
+    	}
+    	h1{
+    		color: #F25E6B;
+    	}
+    	h4 {
+    		color: #73363B;
+    	}
+    	h3 {
+    		color: #A9BF5A;
+				font-size: 20px;
+    	}
+    	.titulo{
+    		margin: 5%;
+    		text-align: center;
+    	}
+    	img {
+    		width: 300px;
+    		margin: 2%;
+    		height: auto;
+    		opacity: 0.3;
+    	}
+    	img:hover{
+    		opacity: 1;
+    	}
+    	.imagenes h4 {
+    		margin: 5%;
+    		width: auto;
+    		height: auto;
+    	}
+    	.divisores {
+    		width: 33.3%;
+    		float: left;
+    		text-align: center;
+    	}
+    	.resultado {
+    		margin: auto;
+    		height: 100px;
+    		text-align: center;
+    	}
+
+    	.container {
+    		color: white;
+    	}

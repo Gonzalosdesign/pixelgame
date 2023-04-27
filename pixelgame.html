@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pixelgame</title>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!--Fuente-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/pixelgame.css">
+</head>
+<body>
+	<div class="container">
+      <div class="row">
+            <div class="col-12 titulo">
+            	<h1>Piedra, papel o tijera</h1>
+            </div>
+            <div class="col-12 bajada">
+            	<h4 class="text-center">Estoy aprendiendo a programar con javascript y me propusé hacer algunos ejercicios de practica. Este es un jueguito básico, al hacer click en una imagen elegís tu jugada, la compu hace la suya, compara las dos jugadas y te dice quien ganó. Elegí una opción para jugar.</h4>
+        	</div>
+            <div class="col-4 col-md-4">
+            	<img src="img/papel.png" onclick="jugar(0) , casosPosibles()" type="button" class="img-fluid">
+            </div>
+            <div class="col-4 col-md-4">
+            	<img src="img/tijera.png" onclick="jugar(1) , casosPosibles()" type="button" class="img-fluid">
+            </div>
+            <div class="col-4 col-md-4">
+            	<img src="img/stone.png" onclick="jugar(2) , casosPosibles()" type="button" class="img-fluid">
+            </div>
+            <div class="col-12 resultado">
+            	<h3 id="jugada"></h3>
+				<h3 id="backlog"></h3>
+			</div>
+      </div>
+    </div>
+
+	<script>
+		let playerChoice = 0;
+		let cpuChoice = 1;
+		let eleccion;
+
+		//devuelve un texto de qué item eligió cada jugador
+		function chooseItem (item){
+			if (item == 0){item = "papel";}
+			else if (item == 1){item = "tijera";}
+			else if (item == 2){item = "piedra";}
+			eleccion = item;
+		}
+
+		//toma el argumento y lo asigna a la variable playerChoice, también randomiza una elección para el cpu
+		function jugar(jugador){
+			playerChoice = jugador;
+			chooseItem(playerChoice);
+			document.getElementById('jugada').innerHTML = "El jugador eligió " + eleccion;
+
+			//RANDOMIZER DEL CPU, (no hay necesidad de ponerlo en otra funcion si se va a ejecutar al mismo tiempo)
+			cpuChoice = Math.floor(Math.random() * (3 - 0));
+			console.log("el cpu eligió " + cpuChoice);
+			console.log("el jugador eligió " + jugador);
+			chooseItem(cpuChoice);
+			document.getElementById('jugada').innerHTML += " y la computadora eligió "+ eleccion;
+		}
+
+				//Compara itemGanador con playerChoice para definir quien gana
+		let ganador;
+		function comparativa (itemGanador, itemPerdedor){
+				if (playerChoice == itemGanador) {
+				ganador = "el jugador";
+				}
+				else {
+				ganador = "la compu";
+				}
+				 console.log("Gana " + ganador);
+				 document.getElementById('backlog').innerHTML = "El ganador es " + ganador;
+			}
+
+		function casosPosibles(){
+			//eliminar los players, dejar los resultados
+			if (cpuChoice == playerChoice) {
+				console.log("Empate, ambos eligieron lo mismo.");
+				document.getElementById('backlog').innerHTML = "Empate, ambos eligieron lo mismo.";
+			}
+			else if (playerChoice == 0 || cpuChoice == 0 , playerChoice == 2 || cpuChoice == 2){
+				comparativa(0,2);
+			}
+			else if (playerChoice == 1 || cpuChoice == 1 , playerChoice == 0 || cpuChoice == 0){
+				comparativa(1,0);
+			}
+			else if (playerChoice == 2 || cpuChoice == 2 , playerChoice == 1 || cpuChoice == 1){
+				comparativa(2,1);
+			}
+		}
+
+
+	</script>
+
+</body>
+</html>
